@@ -44,6 +44,17 @@ export default new Vuex.Store({
             reject(error);
           });
       });
+    },
+
+    updateMyComment({ commit }, {id, comment}) {
+      return new Promise((resolve, reject) => {
+        axios.put(`${API.payment}/${id}`, {comment})
+          .then((response) => {
+            resolve(response.data);
+          }).catch((error) => {
+            reject(error);
+          });
+      });
     }
   }
 })

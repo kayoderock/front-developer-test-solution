@@ -1,3 +1,6 @@
+
+import Moment from 'moment';
+
 export default {
   currencySymbol (currency) {
     const symbols = new Map([
@@ -11,6 +14,6 @@ export default {
     return symbols.get(currency);
   },
   timeAgo (date) {
-    return this.Moment(date, "YYYYMMDD").fromNow();
+    return Moment(date, "YYYYMMDD").fromNow();
   },
 }
