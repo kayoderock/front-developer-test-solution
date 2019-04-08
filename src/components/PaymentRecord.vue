@@ -91,12 +91,11 @@ export default {
       justify-content: space-between;
 
       &--merchant {
-        color: blue;
         font-weight: bold;
       }
 
       &--date {
-        color: blue;
+        color: $color-my-text-1;
         font-weight: bold;
       }
     }
@@ -119,6 +118,7 @@ export default {
         position: absolute;
         font-size: 1.5rem;
         left: -14px;
+        color: darkmagenta;
       }
     }
   }

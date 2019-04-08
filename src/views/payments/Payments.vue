@@ -9,8 +9,8 @@
         </div>
 
         <div>
-          <el-row>
-            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="4"
+          <el-row :gutter="5">
+            <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8"
               v-for="(thisPaymentRecord, index) in myPayments"
               :key="`payment-${index}`"
             >
@@ -54,13 +54,14 @@ export default {
 
 <style lang="scss" scoped>
   .payments {
-    max-width: 800px;
+    max-width: 1200px;
     margin: auto;
     padding: 0 8px;
 
     &__title {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
+      margin: 2rem 0;
     }
   }
 </style>
