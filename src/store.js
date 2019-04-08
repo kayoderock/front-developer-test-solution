@@ -16,7 +16,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    getAdminDetails({ commit }) {
+    getAllPaymets({ commit }) {
       return new Promise((resolve, reject) => {
         axios.get(API.payemts)
           .then((response) => {
