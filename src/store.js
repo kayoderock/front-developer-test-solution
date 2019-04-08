@@ -12,6 +12,8 @@ export default new Vuex.Store({
 
   mutations: {
     SET_PAYMENTS (state, payload) {
+
+      console.log('seting')
       state.payments = payload;
     }
   },
@@ -21,7 +23,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.get(API.payment)
           .then((response) => {
-            commit('SET_PAYMENTS', response)
+            commit('SET_PAYMENTS', response.data)
             resolve(response);
           }).catch((error) => {
             reject(error);
