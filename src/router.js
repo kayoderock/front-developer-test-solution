@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import Container from './views/Container.vue'
 import Payments from './views/payments/Payments.vue'
+import PaymentDetails from './views/payments/PaymentDetails.vue'
+
 
 Vue.use(Router)
 
@@ -19,6 +21,11 @@ export default new Router({
           path: '',
           name: 'payments',
           component: Payments
+        },
+        {
+          path: 'payment-details/:id',
+          name: 'payments',
+          component: PaymentDetails
         }
       ]
     },

@@ -7,14 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    payments: []
+    payments: [],
+    current_payment: null
   },
 
   mutations: {
     SET_PAYMENTS (state, payload) {
-
-      console.log('seting')
       state.payments = payload;
+    },
+
+    SET_CURRENT_PAYMENT (state, payload) {
+      state.current_payment = payload
     }
   },
 
@@ -30,5 +33,17 @@ export default new Vuex.Store({
           });
       });
     },
+
+    getPayment({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios.get(`${API.payment}/${id}`)
+          .then((response) => {
+            commit('SET_CURRENT_PAYMENT', response.data)
+            resolve(response);
+          }).catch((error) => {
+            reject(error);
+          });
+      });
+    }
   }
 })

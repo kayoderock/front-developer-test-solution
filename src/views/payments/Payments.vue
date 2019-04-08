@@ -40,9 +40,6 @@ export default {
     components: {
       paymentRecord
     },
-    methods: {
-        
-    },
     watch: {
       '$store.state.payments' () {
         this.myPayments = this.$store.state.payments.payments;

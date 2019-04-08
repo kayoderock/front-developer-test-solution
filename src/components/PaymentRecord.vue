@@ -1,5 +1,5 @@
 <template>
-  <div class="payment-record">
+  <div @click="viewPaymentDetails" class="payment-record">
     <el-card shadow="hover">
       <el-row>
         <el-col :xs="24" :sm="16" :md="12" :lg="16" :xl="16">
@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-     currencySymbol () {
+    currencySymbol () {
       const symbols = new Map([
         ['EUR', '&euro;'],
         ['NGR', '&#8358;'],
@@ -61,6 +61,9 @@ export default {
     },
     timeAgo (date) {
       return this.Moment(date, "YYYYMMDD").fromNow();
+    },
+    viewPaymentDetails () {
+      this.$router.push(`payment-details/${this.payment.id}`)
     }
   },
 }
