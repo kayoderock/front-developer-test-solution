@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Payment from '../../models/payment';
+import {Payment} from '../../models/payment';
 export default {
     mounted () {
       Payment.getAllPayments();
@@ -13,7 +13,7 @@ export default {
             myPayments: []
         }
     },
-    methods () {
+    methods: {
         
     },
     watch: {
