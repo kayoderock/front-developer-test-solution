@@ -6,6 +6,13 @@
 
       <section class="payments__content">
         <div class="payments__filters">
+          <el-row :gutter="5">
+            <el-col :xs="24" :sm="10">
+              <input @keyup="filterPayments" v-model="filterKeyword" placeholder="filter by name or email. .">
+            </el-col>
+            <el-col :xs="24" :sm="10" >
+            </el-col>
+          </el-row>
         </div>
 
         <div>
@@ -34,16 +41,29 @@ export default {
     },
     data () {
       return {
-        myPayments: []
+        myPayments: [],
+        filterKeyword: '',
       }
     },
     components: {
       paymentRecord
     },
+    methods: {
+      filterPayments () {
+        if (this.filterKeyword.length < 0) {
+          this.myPayments = this.$store.state.payments.payments;
+          return;
+        }
+
+        this.myPayments = this.$store.state.payments.payments.filter(payment => {
+          const userDetails = `${payment.user.last} ${payment.user.first} ${payment.user.email}`;
+          return userDetails.includes(this.filterKeyword);
+        })
+      }
+    },
     watch: {
       '$store.state.payments' () {
         this.myPayments = this.$store.state.payments.payments;
-        console.log(this.myPayments);
       }
     }
 }
@@ -54,6 +74,19 @@ export default {
     max-width: 1200px;
     margin: auto;
     padding: 0 8px;
+
+    &__filters {
+      margin: 8px 0;
+
+      & input {
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid $color-my-text-2;
+        font-size: 1.5rem;
+        padding: 8px;
+      }
+    }
 
     &__title {
       font-size: 2rem;
