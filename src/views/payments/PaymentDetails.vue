@@ -2,7 +2,6 @@
   <main>
     <div v-if="isPaymentAvailable" class="payment-details">
       <div class="payment-details__title">
-       
       </div>
 
       <div class="payment-detail">
@@ -37,14 +36,24 @@
       <div class="payment-details__content">
         <el-row :gutter="10">
           <el-col :xs="24" :sm="24" :md="16">
-            <div class="payment-details__content--reciepts"></div>
+            <p class="payment-details__content--r-title">Payment reciepts</p>
+            <div class="payment-details__content--reciepts">
+              <el-row :gutter="5">
+                <el-col v-for="(img, index) in payment.receipts" :key="`receipt-${index}`" :xs="24" :sm="12" :md="12">
+                  <img :src="`${baseUrl()}${img.url}`" alt="" class="payment-details__content--reciept-img">
+                </el-col>
+                <el-col :xs="24" :sm="12" :md="12">
+                  <add-receipt></add-receipt>
+                </el-col>
+              </el-row>                   
+            </div>
           </el-col>
           <el-col :xs="24" :sm="24" :md="8">
             <span class="payment-details__content--title">Payment comment</span>
             <div v-if="payment.comment.length > 0">
               <p class="payment-details__content--comments">{{payment.comment}}</p>
               <p>
-                <el-button plain @click="editComment" size="mini" icon="el-icon-edit" >Edit Comment</el-button>
+                <el-button plain @click="editComment" size="small" icon="el-icon-edit" >Edit Comment</el-button>
               </p>
             </div>
             <div v-else class="payment-details__content--comment">
@@ -68,6 +77,7 @@
 
 <script>
 import tools from '../../util/tools'
+import addReceipt from '../../components/AddReceipt'
 export default {
   beforeMount () {
     this.fetchPayment();
@@ -77,6 +87,9 @@ export default {
       payment: {},
       currentComment: ''
     }
+  },
+  components: {
+    addReceipt,
   },
   watch: {
     '$store.state.current_payment' () {
@@ -108,6 +121,9 @@ export default {
     editComment () {
       this.currentComment = this.payment.comment;
       this.payment.comment = '';
+    },
+    baseUrl () {
+      return process.env.VUE_APP_API_URL;
     }
   }
 }
@@ -131,9 +147,22 @@ export default {
         font-size: 2rem;
       }
 
+      &--r-title{
+        margin: 5px 0;
+        font-size: 2rem;
+      }
+
       &--reciepts {
         border: 1px solid $color-grey-light-2;
-        min-height: 70vh;
+        height: fit-content;
+        padding: 8px;
+      }
+      
+      &--reciept-img {
+        width: 100%;
+        height: 250px;
+        border-radius: 10px;
+        border: .8px solid $color-my-text-1;
       }
 
       &--comments {

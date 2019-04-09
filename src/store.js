@@ -55,6 +55,17 @@ export default new Vuex.Store({
             reject(error);
           });
       });
+    },
+
+    addMoreReciept({ commit }, {id, receipt}) {
+      return new Promise((resolve, reject) => {
+        axios.post(`${API.payment}/${id}/receipts`, receipt)
+          .then((response) => {
+            resolve(response.data);
+          }).catch((error) => {
+            reject(error);
+          });
+      });
     }
   }
 })
