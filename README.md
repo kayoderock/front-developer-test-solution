@@ -15,7 +15,7 @@ A brief description of your project. How long did it take? Which part was the ha
 ```
 This project is simple implementation of a system thats allows user perform certain actions on his payments.
 
-- How long did it take? this work took me about 2 days.
+- The project took about 2 days, the most challenging part is designing the UX of the application  i.e how to present the data to the users view.
  
 #Functionalties
     - User can view a list of their payments
